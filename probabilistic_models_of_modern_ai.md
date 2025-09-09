@@ -1,1 +1,1 @@
-#Lecture Notes for Probabilistic Models of Modern AI (MATH-415)
+# Lecture Notes for Probabilistic Models of Modern AI (MATH-415)
