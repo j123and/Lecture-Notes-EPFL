@@ -128,14 +128,15 @@ $$
 ## Distributions and transformations
 
 ### Parametric family
+A parametric family is a group of distributions described by a finite-dimensional parameter with the same support.
 
 ### Exponential family
-The exponential family is a subset of the parametric family of distributions and is the collection of distributions with density function that can be written on the following form:
+The exponential family is a parametric family of distributions and is the collection of distributions with density function that can be written on the following form:
 
 $$
 f(x|\theta) = h(x)e^{\eta(x)^\mathsf{T}T(x)-A(\theta)}
 $$
-Where $T$ a sufficient statistic $\eta$ a reparametrization of $\theta$ and $A$ is the log-partition function necessary to normalize the distribution.
+Where $T$ a sufficient statistic $\eta$ a reparametrization of $\theta$ and $A$ is the log-partition function necessary to normalize the distribution. It cannot have support that it dependent on the parameter
 
 Some examples:
 
