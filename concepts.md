@@ -20,6 +20,27 @@ The Probability Distribution of an RV is a probability measure on the value spac
 ### Stochastic Process
 A Stochastic Process is a collection of random variables indexed by some set, generally time. 
 
+### Statistic
+A statistic is a function or transformation of data such as the sample mean. The Neyman-Fischer factorization theorem says that if we can factor the density function into one function of the statistic, which depends on the parameter and another function which does not depend on the parameter. If $T$ is our statistic, $f$ our density and $g$ and $h$ functions:
+
+$$
+f_\theta(x) = g_\theta(T(x))h(x)
+$$
+
+### Sufficient statistic
+A sufficient statistic is a statistic that tells us as much about the distributions parameter that the data possibly can. A minimal sufficient statistic is a sufficient statistic that cannot be further reduced. One way of seeing this is that for other sufficient statistics the minimal can be obtained by a transformation of them.
+
+For example if we have data drawn from a uniform distribution:
+
+$$
+X_i \sim U(0,\theta)
+$$
+then one sufficient statistic is $2\bar X$ but it is not a minimal sufficient statistic. A minimal sufficient statistic for this sample is the the sample max:
+
+$$
+T = max(X_i)
+$$
+
 ---
 ## Discrete Markov Chain
 A discrete Markov Chain is a stochastic function, i.e there are many possible outputs for a given input, with the property that only the the left closest value to the current value influences the functions value at the current value.  
@@ -89,6 +110,63 @@ $\ell(\theta|X)= \displaystyle \sum_{i=1}^{n} \log f(x_i;\theta)$
 
 
 ### The MLE
-One of the most common uses for the likelihood function is to obtain an estimator for a parameter with maximum likelihood under the data. This is with the help of the log-likelihood done in the following way:
+One of the most common uses for the likelihood function is to obtain an estimator for a parameter with maximum likelihood under the data. This is with the help of the log-likelihood by simply derivating and setting the derivative of the log-likelihood to zero and solving for the parameter. The obtained estimator is denoted $\hat\theta_{MLE}$.
+
+
+## Error estimates
+Error, deviation, difference, loss, cost or inaccuracy are ways to denote the discrepancy between what a model predicts and observations of data.
+
+### Mean Squared Error (MSE)
+The Mean Squared Error is a modification of the mean error which penalizes larger error and favours smaller error. It's defined as, for target values $y$, input $x_i$ and model $f$:
+
+$$
+MSE(f) = \displaystyle \frac{1}{n}\sum_{i=1}^{n}(y_i-f(x_i))^2
+$$
+
+
+
+## Distributions and transformations
+
+### Parametric family
+
+### Exponential family
+The exponential family is a subset of the parametric family of distributions and is the collection of distributions with density function that can be written on the following form:
+
+$$
+f(x|\theta) = h(x)e^{\eta(x)^\mathsf{T}T(x)-A(\theta)}
+$$
+Where $T$ a sufficient statistic $\eta$ a reparametrization of $\theta$ and $A$ is the log-partition function necessary to normalize the distribution.
+
+Some examples:
+
+* The Poisson distribution, Poisson($\lambda$) with density $f$:
+$$
+f = \frac{\lambda^xe^{-\lambda}}{x!}, \quad x\in\mathbb{N_0}
+$$
+$$
+= \frac{1}{x!}e^{xlog\lambda-\lambda}
+$$
+$\quad$ where $h(x)=\frac{1}{x!}, T(x) = x, \eta(\theta) = log(\theta), A(\theta) = \theta$
+* The normal distribution $N(\mu,\sigma) $ with density:
+$$
+\frac{1}{2\pi\sigma^2}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, \quad x\in \mathbb{R}
+$$
+$$
+= e^{-log(\frac{1}{2\pi\sigma^2})-\frac{(x-\mu)^2}{2\sigma^2}}
+$$
+$$
+= e^{-log(\frac{1}{2\pi\sigma^2})-\frac{(x^2- 2\mu x + \mu^2)}{2\sigma^2}}
+$$
+
+$\quad$ where: 
+$$
+\begin{aligned}
+    h(x) &= 1,\\
+  T_1(x) &= x,\quad T_2(x)=x^2,\\
+  \eta_1(\theta) &= \frac{\mu}{\sigma^2},\quad
+  \eta_2(\theta) = \frac{1}{2\sigma^2},\\
+  A(\theta) &= \frac{\mu^2}{2\sigma^2} + \frac{1}{2}\log(2\pi\sigma^2).
+\end{aligned}
+$$
 
 
