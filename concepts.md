@@ -69,6 +69,26 @@ $\quad\quad$ $\varphi_{X}(t) = e^{i\mu t - \frac{1}{2}\sigma^2t^2} $
 ## Likelihood
 The likelihood paradigm is to assess how likely data is under a given model with the presumption that a model which estimates the data as more likely is a more fitting model.
 
-The likelihood ratio is given by
+The likelihood ratio for models $P$ and $Q$ is given by:
 
-$\mathscr{l}(\theta)$
+$L(X)  = \frac{P(X)}{Q(X)}$  
+
+And for two hypothezised parameters $\theta_0$ and $\theta_1$ under a function $f$:
+
+$\Lambda(\theta | X) = \frac{f(X;\theta_1)}{f(X;\theta_0)}$
+
+But we often work with the log of the likelihood as often in statistics the log makes things easier to handle in that we can talk about sums where we would otherwise have products. And as the log is a strictly increasing function maximizing and convex arguments apply to it.
+
+If we have iid data $X_i$ with density function $f$ the likelihood function becomes: 
+
+$L(\theta|X) = \displaystyle \prod_{i=1}^{n} f(x_i;\theta) $
+
+And the log likelihood turns this into:
+
+$\ell(\theta|X)= \displaystyle \sum_{i=1}^{n} \log f(x_i;\theta)$
+
+
+### The MLE
+One of the most common uses for the likelihood function is to obtain an estimator for a parameter with maximum likelihood under the data. This is with the help of the log-likelihood done in the following way:
+
+
