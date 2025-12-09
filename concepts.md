@@ -171,3 +171,57 @@ $$
 $$
 
 
+## Importance sampling
+Importance sampling is a trick for estimation when we want to sample rare events from a distribution that in itself is hard to draw form. Instead of sampling from such a distribution we sample from an easier one and reweigh the samples according to the ratio between the desired and easier distribution.
+
+One algorithm that makes the importance sampling more effective is where we update the proposal distribution according to the weighted samples so which lets us sample even more effectively and help us not get stuck in an ineffective proposal.
+
+## Transformers 
+
+## Kolmogorov Complexity
+The kolmogorov complexity of a some unit $x$ is the smallest size of all programs $p$ that can output $x$. It is not computable. Proof by contradiction:
+
+* Consider a program Q that takes input n and computes Kolmogorov complexities $K(s_i)$ of strings $s_i$ and ouputs and halts once its larger than n. This program can is described with a constant size and n can be encoded in log n bits. We then have $n \lt K(s_i) \lt  log(n)+C $. This does not hold for large enough $n$ and our assumption was wrong.
+
+## Simulation of random numbers
+
+### Linear Congruential Generator (LCG)
+This is a random number generator where we generate numbers according to the following recurrence formula:
+
+$$
+X_{n+1} = aX_n+b \quad(mod \space m)
+$$
+Where m and b are coprime, $X_0$ is called the seed and determines where we start in the sequence and m is prime. It has period m.
+
+### Inverse Transform Method
+The inverse transform method generates uniform samples and puts these through the inverse cdf of the desired RV:
+
+> ***Algorithm Inverse-Transform***:
+>
+> Generate $U_i = U(0,1)$
+>
+> Set $X_i = F(U_i)$
+
+### Acceptance-Rejection Method
+When we have an unknown distribution f that we are not sure how to sample from, but we have a secondary distribution g such that $cg\geq f$ we can sample from g instead and only accept samples that fall under f.
+
+## Tests of simulated random numbers
+
+### Kolmogorov-Smirnov (KS) test
+The Kolmogorov Smirnov test says that the largest absolute difference between the empirical cdf and the theoretical cdf of simulated values should scale like the square root of the number of samples and converge to a Kolmogorov random variable K. The null that the simulated values are from the theoretical distribution is rejected at level $\alpha$ when this difference divided by the square root of the number of samples is greater then the corresponding quantile of K. The quantiles are tabulated.
+
+### Q-Q plot
+Here we sort the simulated values and compare them to the theoretical quantiles. 
+
+### $\chi^2$-test
+In the $\chi^2$-test we use the statistic 
+$
+\sum_i \frac{(O_i-E_i)^2}{E_i}
+$
+where $O_i$ is the number of observations of an event and $E_i$ the theoretical expected value of the number of such observations. We then test this statistic against a $\chi^2_{f-1-p}$ distribution with $f-1-p$ degrees of freedom where $f$ is the number of categories or the size of the sample space  and $p$ is the number of estimated parameters.
+
+### Gap test 
+Here we test that the gaps between elements in a sequence of uniform RVs have a geometric distribution.
+
+### Serial test 
+The serial test groups a sequence of uniform RVs into vectors of size d and checks if they are now uniform on $[0,1)^d$
